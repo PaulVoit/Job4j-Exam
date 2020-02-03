@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Job4j Exam</string>
+    <string name="domain_prompt">Choose domain</string>
+    <string name="exp_date">Date of testing</string>
+    <string name="city_name">City</string>
+    <string name="object_name">Name of Object</string>
+    <string name="street_and_house_name">Street and house</string>
+    <string name="customer_name">Name and Surname of Customer</string>
+    <string name="date_of">Date</string>
+    <string name="air_temperature">Air temperature</string>
+    <string name="air_humidity">Air humidity</string>
+    <string name="atmospheric_pressure">Atmospheric pressure</string>
+    <string name="report_number">Number of report</string>
+    <string-array name="domain_arrays">
+        <item>Choose domain</item>
+        <item>Moscow region</item>
+        <item>Saint-Petersburg</item>
+    </string-array>
+    <string-array name="date_arrays">
+        <item>Date of testing</item>
+        <item>12.08.2020</item>
+        <item>24.10.2020</item>
+    </string-array>
+</resources>
