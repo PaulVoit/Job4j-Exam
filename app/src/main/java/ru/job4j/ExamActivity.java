@@ -61,35 +61,10 @@ public class ExamActivity extends AppCompatActivity {
         previous = findViewById(R.id.previous);
         next = findViewById(R.id.next);
         text = findViewById(R.id.question);
-        variants.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (position != questions.size() - 1) {
-                    next.setEnabled(true);
-                }
-            }
-        });
+        variants.setOnCheckedChangeListener(this::checkChange);
         this.fillForm();
-        next.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        showAnswer();
-                        saveAnswer();
-                        position++;
-                        fillForm();
-                    }
-                }
-        );
-        previous.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        position--;
-                        fillForm();
-                    }
-                }
-        );
+        next.setOnClickListener(this::nextBtn);
+        previous.setOnClickListener(this::previousBtn);
 
     }
 
@@ -126,4 +101,18 @@ public class ExamActivity extends AppCompatActivity {
         this.answers.add(position, variants.getCheckedRadioButtonId());
     }
 
+    private void nextBtn(View view) {
+        showAnswer();
+        position++;
+        fillForm();
+    }
+    private void previousBtn(View view) {
+        position--;
+        fillForm();
+    }
+    private void checkChange(RadioGroup radioGroup, int i) {
+        if (position != questions.size() - 1) {
+            next.setEnabled(true);
+        }
+    }
 }
