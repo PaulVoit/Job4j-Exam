@@ -2,6 +2,7 @@ package ru.job4j;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,10 +21,17 @@ import ru.job4j.model.Question;
 
 public class ExamActivity extends AppCompatActivity {
 
-    private static final String TAG = "ExamActivity";
+
+    public static final String HINT_FOR = "hint_for";
+    public static final String QUESTION_TEXT = "question_text";
+    public static final String RIGHT_ANSWERS = "right_answers";
+    public static final String ALL_ANSWERS = "all_answers";
+    private int rightAnswers = 0;
+    private boolean isLastAnswerWasRight = false;
     private RadioGroup variants;
     private Button previous;
     private Button next;
+    private Button hint;
     private TextView text;
 
     private int position = 0;
@@ -61,10 +69,19 @@ public class ExamActivity extends AppCompatActivity {
         previous = findViewById(R.id.previous);
         next = findViewById(R.id.next);
         text = findViewById(R.id.question);
+        hint = findViewById(R.id.hint);
         variants.setOnCheckedChangeListener(this::checkChange);
         this.fillForm();
         next.setOnClickListener(this::nextBtn);
         previous.setOnClickListener(this::previousBtn);
+        hint.setOnClickListener(
+                view -> {
+                    Intent intent = new Intent(ExamActivity.this, HintActivity.class);
+                    intent.putExtra(HINT_FOR, position);
+                    intent.putExtra(QUESTION_TEXT, this.questions.get(position).getText());
+                    startActivity(intent);
+                }
+        );
 
     }
 
@@ -79,6 +96,9 @@ public class ExamActivity extends AppCompatActivity {
             Option option = question.getOptions().get(index);
             button.setId(option.getId());
             button.setText(option.getText());
+            if (index == question.getUserChoice()) {
+                button.setChecked(true);
+            }
         }
         variants.clearCheck();
         previous.setEnabled(position != 0);
@@ -101,18 +121,40 @@ public class ExamActivity extends AppCompatActivity {
         this.answers.add(position, variants.getCheckedRadioButtonId());
     }
 
+
     private void nextBtn(View view) {
+
         showAnswer();
+        saveAnswer();
         position++;
-        fillForm();
+        if (position == questions.size()) {
+            Intent intent = new Intent(this, ResultActivity.class);
+            intent.putExtra(RIGHT_ANSWERS, rightAnswers);
+            intent.putExtra(ALL_ANSWERS, questions.size());
+            startActivity(intent);
+            position--;
+            rightAnswers = 0;
+        } else {
+            fillForm();
+        }
     }
+
     private void previousBtn(View view) {
+        int id = variants.getCheckedRadioButtonId();
+        if (id == -1) {
+            saveAnswer();
+        }
+        if (isLastAnswerWasRight) {
+            rightAnswers--;
+            isLastAnswerWasRight = false;
+        }
         position--;
         fillForm();
     }
+
     private void checkChange(RadioGroup radioGroup, int i) {
-        if (position != questions.size() - 1) {
-            next.setEnabled(true);
-        }
+
+        next.setEnabled(true);
     }
+
 }
