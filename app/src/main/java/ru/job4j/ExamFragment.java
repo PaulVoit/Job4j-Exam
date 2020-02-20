@@ -155,5 +155,12 @@ public class ExamFragment extends Fragment {
 
         next.setEnabled(true);
     }
+    public static ExamFragment of(int index) {
+        ExamFragment exam = new ExamFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(ExamFragment.HINT_FOR, index);
+        exam.setArguments(bundle);
+        return exam;
+    }
 
 }

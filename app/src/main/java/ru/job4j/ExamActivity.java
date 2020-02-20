@@ -21,6 +21,8 @@ import ru.job4j.model.Question;
 public class ExamActivity extends BaseActivity {
 
     public Fragment loadFrg() {
-        return new ExamFragment();
+        return ExamFragment.of(
+                getIntent().getIntExtra(ExamFragment.HINT_FOR, 0)
+        );
     }
 }

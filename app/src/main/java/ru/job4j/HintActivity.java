@@ -16,7 +16,9 @@ public class HintActivity extends BaseActivity {
 
 
     public Fragment loadFrg() {
-        return new HintFragment();
+        return HintFragment.of(
+                getIntent().getIntExtra(ExamFragment.HINT_FOR, 0)
+        );
     }
 
 

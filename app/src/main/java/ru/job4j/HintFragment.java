@@ -43,4 +43,12 @@ public class HintFragment extends Fragment {
         );
         return view;
     }
+
+    public static HintFragment of(int index) {
+        HintFragment hint = new HintFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(ExamFragment.HINT_FOR, index);
+        hint.setArguments(bundle);
+        return hint;
+    }
 }
