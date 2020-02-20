@@ -21,8 +21,8 @@ public class ResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        textViewAnswers.setText("Quantity of questions: " + intent.getIntExtra(ExamActivity.ALL_ANSWERS, 0));
-        textViewRightAnswers.setText("Right answers: " + intent.getIntExtra(ExamActivity.RIGHT_ANSWERS, 0));
+        textViewAnswers.setText("Quantity of questions: " + intent.getIntExtra(ExamFragment.ALL_ANSWERS, 0));
+        textViewRightAnswers.setText("Right answers: " + intent.getIntExtra(ExamFragment.RIGHT_ANSWERS, 0));
 
 
     }
