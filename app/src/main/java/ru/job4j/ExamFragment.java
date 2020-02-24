@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ru.job4j.exam.ExamsActivity;
 import ru.job4j.model.Option;
 import ru.job4j.model.Question;
 
@@ -33,6 +34,7 @@ public class ExamFragment extends Fragment {
     private Button previous;
     private Button next;
     private Button hint;
+    private Button listOfExams;
     private TextView text;
 
     private int position = 0;
@@ -70,10 +72,12 @@ public class ExamFragment extends Fragment {
         next = view.findViewById(R.id.next);
         text = view.findViewById(R.id.question);
         hint = view.findViewById(R.id.hint);
+        listOfExams = view.findViewById(R.id.list_of_exams);
         variants.setOnCheckedChangeListener(this::checkChange);
         this.fillForm();
         next.setOnClickListener(this::nextBtn);
         previous.setOnClickListener(this::previousBtn);
+        listOfExams.setOnClickListener(this::listOfExamsBtn);
         hint.setOnClickListener(
                 viewScreen -> {
                     Intent intent = new Intent(getActivity(), HintActivity.class);
@@ -151,10 +155,16 @@ public class ExamFragment extends Fragment {
         fillForm();
     }
 
+    private void listOfExamsBtn(View view) {
+        Intent intent = new Intent(getActivity(), ExamsActivity.class);
+        startActivity(intent);
+    }
+
     private void checkChange(RadioGroup radioGroup, int i) {
 
         next.setEnabled(true);
     }
+
     public static ExamFragment of(int index) {
         ExamFragment exam = new ExamFragment();
         Bundle bundle = new Bundle();
