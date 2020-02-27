@@ -1,4 +1,4 @@
-package ru.job4j.model;
+package ru.job4j.store;
 
 public class Option {
     private int id;

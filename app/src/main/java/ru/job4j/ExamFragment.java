@@ -20,8 +20,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import ru.job4j.exam.ExamsActivity;
-import ru.job4j.model.Option;
-import ru.job4j.model.Question;
+import ru.job4j.store.Option;
+import ru.job4j.store.Question;
+import ru.job4j.store.QuestionStore;
 
 public class ExamFragment extends Fragment {
     public static final String HINT_FOR = "hint_for";
@@ -36,33 +37,11 @@ public class ExamFragment extends Fragment {
     private Button hint;
     private Button listOfExams;
     private TextView text;
-
+    private final QuestionStore store = QuestionStore.getInstance();
     private int position = 0;
-    private final List<Question> questions = Arrays.asList(
-            new Question(
-                    1, "How many primitive variables does Java have?",
-                    Arrays.asList(
-                            new Option(1, "1.1"), new Option(2, "1.2"),
-                            new Option(3, "1.3"), new Option(4, "1.4")
-                    ), 4
-            ),
-            new Question(
-                    2, "What is Java Virtual Machine?",
-                    Arrays.asList(
-                            new Option(1, "2.1"), new Option(2, "2.2"),
-                            new Option(3, "2.3"), new Option(4, "2.4")
-                    ), 4
-            ),
-            new Question(
-                    3, "What is happen if we try unboxing null?",
-                    Arrays.asList(
-                            new Option(1, "3.1"), new Option(2, "3.2"),
-                            new Option(3, "3.3"), new Option(4, "3.4")
-                    ), 4
-            )
-    );
 
-    private final List<Integer> answers = new ArrayList<>(questions.size());
+
+    private final List<Integer> answers = new ArrayList<>(store.size());
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,7 +61,7 @@ public class ExamFragment extends Fragment {
                 viewScreen -> {
                     Intent intent = new Intent(getActivity(), HintActivity.class);
                     intent.putExtra(HINT_FOR, position);
-                    intent.putExtra(QUESTION_TEXT, this.questions.get(position).getText());
+                    intent.putExtra(QUESTION_TEXT, store.get(position).getText());
                     startActivity(intent);
                 }
         );
@@ -91,7 +70,7 @@ public class ExamFragment extends Fragment {
 
     private void fillForm() {
 
-        Question question = this.questions.get(this.position);
+        Question question = store.get(this.position);
         text.setText(question.getText());
 
         for (int index = 0; index != variants.getChildCount(); index++) {
@@ -113,7 +92,7 @@ public class ExamFragment extends Fragment {
 
     private void showAnswer() {
         int id = variants.getCheckedRadioButtonId();
-        Question question = this.questions.get(this.position);
+        Question question = store.get(this.position);
         Toast.makeText(
                 getActivity(), "Your answer is " + id + ", correct is " + question.getAnswer(),
                 Toast.LENGTH_SHORT
@@ -130,10 +109,10 @@ public class ExamFragment extends Fragment {
         showAnswer();
         saveAnswer();
         position++;
-        if (position == questions.size()) {
+        if (position == store.size()) {
             Intent intent = new Intent(getActivity(), ResultActivity.class);
             intent.putExtra(RIGHT_ANSWERS, rightAnswers);
-            intent.putExtra(ALL_ANSWERS, questions.size());
+            intent.putExtra(ALL_ANSWERS, store.size());
             startActivity(intent);
             position--;
             rightAnswers = 0;
