@@ -1,4 +1,4 @@
-package ru.job4j.exam.model;
+package ru.job4j.exam.store;
 
 public class Exam {
     private int id;

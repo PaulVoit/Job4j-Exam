@@ -24,7 +24,7 @@ import ru.job4j.store.Option;
 import ru.job4j.store.Question;
 import ru.job4j.store.QuestionStore;
 
-public class ExamFragment extends Fragment {
+public class ExamFragment extends Fragment implements View.OnClickListener {
     public static final String HINT_FOR = "hint_for";
     public static final String QUESTION_TEXT = "question_text";
     public static final String RIGHT_ANSWERS = "right_answers";
@@ -57,14 +57,7 @@ public class ExamFragment extends Fragment {
         next.setOnClickListener(this::nextBtn);
         previous.setOnClickListener(this::previousBtn);
         listOfExams.setOnClickListener(this::listOfExamsBtn);
-        hint.setOnClickListener(
-                viewScreen -> {
-                    Intent intent = new Intent(getActivity(), HintActivity.class);
-                    intent.putExtra(HINT_FOR, position);
-                    intent.putExtra(QUESTION_TEXT, store.get(position).getText());
-                    startActivity(intent);
-                }
-        );
+        hint.setOnClickListener(this);
         return view;
     }
 
@@ -152,4 +145,11 @@ public class ExamFragment extends Fragment {
         return exam;
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), HintActivity.class);
+        intent.putExtra(HINT_FOR, position);
+        intent.putExtra(QUESTION_TEXT, store.get(position).getText());
+        startActivity(intent);
+    }
 }
