@@ -11,6 +11,10 @@
     <string name="air_humidity">Влажность воздуха</string>
     <string name="atmospheric_pressure">Атмосферное давление</string>
     <string name="report_number">Номер отчета</string>
+    <string name="btn_date_time_fragment">Date/time fragment</string>
+    <string name="btn_time">Время</string>
+    <string name="btn_date">Дата</string>
+    <string name="date_time">Дата и Время</string>
     <string-array name="domain_arrays">
         <item>Выберите область</item>
         <item>Московская</item>

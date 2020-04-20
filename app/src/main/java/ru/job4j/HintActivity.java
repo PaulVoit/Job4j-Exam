@@ -14,12 +14,9 @@ import java.util.Map;
 
 public class HintActivity extends BaseActivity {
 
-
     public Fragment loadFrg() {
         return HintFragment.of(
                 getIntent().getIntExtra(ExamFragment.HINT_FOR, 0)
         );
     }
-
-
 }

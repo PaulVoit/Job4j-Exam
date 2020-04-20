@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import ru.job4j.store.Option;
 import ru.job4j.store.Question;
 import ru.job4j.store.QuestionStore;
 
-public class ExamFragment extends Fragment implements View.OnClickListener {
+public class ExamFragment extends Fragment implements View.OnClickListener, ConfirmHintDialogFragment.ConfirmHintDialogListener {
     public static final String HINT_FOR = "hint_for";
     public static final String QUESTION_TEXT = "question_text";
     public static final String RIGHT_ANSWERS = "right_answers";
@@ -39,7 +40,6 @@ public class ExamFragment extends Fragment implements View.OnClickListener {
     private TextView text;
     private final QuestionStore store = QuestionStore.getInstance();
     private int position = 0;
-
 
     private final List<Integer> answers = new ArrayList<>(store.size());
 
@@ -147,9 +147,21 @@ public class ExamFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        DialogFragment dialog = new ConfirmHintDialogFragment(ExamFragment.this);
+        dialog.show(getActivity().getSupportFragmentManager(), "dialog_tag");
+    }
+
+    @Override
+    public void onPositiveDialogClick(DialogFragment dialog) {
         Intent intent = new Intent(getActivity(), HintActivity.class);
         intent.putExtra(HINT_FOR, position);
         intent.putExtra(QUESTION_TEXT, store.get(position).getText());
         startActivity(intent);
     }
+
+    @Override
+    public void onNegativeDialogClick(DialogFragment dialog) {
+        Toast.makeText(getActivity(), "Молодец!!!", Toast.LENGTH_SHORT).show();
+    }
+
 }
