@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import ru.job4j.R;
 
 public class GreetFragment extends Fragment {
     @Nullable

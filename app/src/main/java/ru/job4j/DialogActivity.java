@@ -11,6 +11,9 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Locale;
 
+import ru.job4j.fragments.DatePickerFragment;
+import ru.job4j.fragments.TimePickerFragment;
+
 public class DialogActivity extends AppCompatActivity implements DatePickerFragment.DatePickerListener,
         TimePickerFragment.TimePickerListener {
 

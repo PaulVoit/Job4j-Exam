@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +17,11 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import ru.job4j.HintActivity;
+import ru.job4j.R;
+import ru.job4j.ResultActivity;
 import ru.job4j.exam.ExamsActivity;
 import ru.job4j.store.Option;
 import ru.job4j.store.Question;

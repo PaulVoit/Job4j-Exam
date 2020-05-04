@@ -1,11 +1,12 @@
 package ru.job4j;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import ru.job4j.fragments.ExamFragment;
 
 public class ResultActivity extends AppCompatActivity {
 

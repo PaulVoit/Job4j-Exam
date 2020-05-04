@@ -15,6 +15,8 @@
     <string name="btn_time">Время</string>
     <string name="btn_date">Дата</string>
     <string name="date_time">Дата и Время</string>
+    <string name="add_item">Добавить</string>
+    <string name="delete_item">Удалить</string>
     <string-array name="domain_arrays">
         <item>Выберите область</item>
         <item>Московская</item>

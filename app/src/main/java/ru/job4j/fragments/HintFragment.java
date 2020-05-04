@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import ru.job4j.R;
 
 public class HintFragment extends Fragment {
     private final Map<Integer, String> answers = new HashMap<>();

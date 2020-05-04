@@ -1,12 +1,10 @@
 package ru.job4j.exam;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 import ru.job4j.ExamActivity;
-import ru.job4j.ExamFragment;
 import ru.job4j.R;
 import ru.job4j.exam.store.Exam;
 
