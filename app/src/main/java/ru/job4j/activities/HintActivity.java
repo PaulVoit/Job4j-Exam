@@ -1,7 +1,8 @@
-package ru.job4j;
+package ru.job4j.activities;
 
 import androidx.fragment.app.Fragment;
 
+import ru.job4j.activities.BaseActivity;
 import ru.job4j.fragments.ExamFragment;
 import ru.job4j.fragments.HintFragment;
 

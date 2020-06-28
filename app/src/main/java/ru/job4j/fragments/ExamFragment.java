@@ -19,10 +19,10 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.job4j.HintActivity;
+import ru.job4j.activities.HintActivity;
 import ru.job4j.R;
-import ru.job4j.ResultActivity;
-import ru.job4j.exam.ExamsActivity;
+import ru.job4j.activities.ResultActivity;
+import ru.job4j.activities.ExamsListActivity;
 import ru.job4j.store.Option;
 import ru.job4j.store.Question;
 import ru.job4j.store.QuestionStore;
@@ -42,7 +42,6 @@ public class ExamFragment extends Fragment implements View.OnClickListener, Conf
     private TextView text;
     private final QuestionStore store = QuestionStore.getInstance();
     private int position = 0;
-
     private final List<Integer> answers = new ArrayList<>(store.size());
 
     @Override
@@ -64,10 +63,8 @@ public class ExamFragment extends Fragment implements View.OnClickListener, Conf
     }
 
     private void fillForm() {
-
         Question question = store.get(this.position);
         text.setText(question.getText());
-
         for (int index = 0; index != variants.getChildCount(); index++) {
             RadioButton button = (RadioButton) variants.getChildAt(index);
             Option option = question.getOptions().get(index);
@@ -80,10 +77,7 @@ public class ExamFragment extends Fragment implements View.OnClickListener, Conf
         variants.clearCheck();
         previous.setEnabled(position != 0);
         next.setEnabled(false);
-
-
     }
-
 
     private void showAnswer() {
         int id = variants.getCheckedRadioButtonId();
@@ -98,9 +92,7 @@ public class ExamFragment extends Fragment implements View.OnClickListener, Conf
         this.answers.add(position, variants.getCheckedRadioButtonId());
     }
 
-
     private void nextBtn(View view) {
-
         showAnswer();
         saveAnswer();
         position++;
@@ -130,12 +122,11 @@ public class ExamFragment extends Fragment implements View.OnClickListener, Conf
     }
 
     private void listOfExamsBtn(View view) {
-        Intent intent = new Intent(getActivity(), ExamsActivity.class);
+        Intent intent = new Intent(getActivity(), ExamsListActivity.class);
         startActivity(intent);
     }
 
     private void checkChange(RadioGroup radioGroup, int i) {
-
         next.setEnabled(true);
     }
 
@@ -165,5 +156,4 @@ public class ExamFragment extends Fragment implements View.OnClickListener, Conf
     public void onNegativeDialogClick(DialogFragment dialog) {
         Toast.makeText(getActivity(), "Молодец!!!", Toast.LENGTH_SHORT).show();
     }
-
 }

@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Locale;
 
+import ru.job4j.R;
 import ru.job4j.fragments.DatePickerFragment;
 import ru.job4j.fragments.TimePickerFragment;
 

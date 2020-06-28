@@ -1,2 +1,3 @@
 include ':app'
 rootProject.name='Job4j Exam'
+include ':contentProvider'

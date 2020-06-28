@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ru.job4j.R;
 import ru.job4j.fragments.ExamFragment;
 
 public class ResultActivity extends AppCompatActivity {

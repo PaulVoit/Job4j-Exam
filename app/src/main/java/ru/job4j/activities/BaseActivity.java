@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.activities;
 
 
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+
+import ru.job4j.R;
 
 public abstract class BaseActivity extends FragmentActivity {
     @Override
