@@ -31,11 +31,19 @@ public class MainActivity extends AppCompatActivity {
     public void startThread(View view) {
         thread = new TestThread(10, imageView);
         thread.start();
+        thread.loadImage(new String[]{"storage/0/emulated/1.jpg"});
     }
 
     public void stopThread(View view) {
         stopThread = false;
         Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "stop: ");
+    }
+
+    @Override
+    protected void onDestroy() {
+        thread.interrupt();
+        thread.disposeImageLoader();
+        super.onDestroy();
     }
 }
