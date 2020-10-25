@@ -32,10 +32,10 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamHolder> {
     private SQLiteDatabase store;
     private AppCompatActivity activity;
 
-    public ExamAdapter(List<Exam> exams, AppCompatActivity activity) {
+    public ExamAdapter(List<Exam> exams, AppCompatActivity activity, SQLiteDatabase store) {
         this.exams = exams;
         this.activity = activity;
-       // this.store = store;
+        this.store = store;
     }
 
     public class ExamHolder extends RecyclerView.ViewHolder {
@@ -59,9 +59,6 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamHolder> {
     public void onBindViewHolder(@NonNull ExamHolder holder, int i) {
         final Exam exam = this.exams.get(i);
         TextView text = holder.view.findViewById(R.id.info);
-        if ((i % 2) == 0) {
-            holder.view.setBackgroundColor(Color.parseColor("#d8d8d8"));
-        }
         TextView result = holder.view.findViewById(R.id.result);
         TextView date = holder.view.findViewById(R.id.date);
         text.setText(exam.getName());
@@ -105,4 +102,15 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamHolder> {
     public int getItemCount() {
         return this.exams.size();
     }
+
+    public void addExam(Exam exam) {
+        exams.add(exam);
+        this.notifyDataSetChanged();
+    }
+
+    public void deleteAll() {
+        exams.clear();
+        this.notifyDataSetChanged();
+    }
+
 }

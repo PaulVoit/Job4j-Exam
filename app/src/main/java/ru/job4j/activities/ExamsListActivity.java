@@ -28,9 +28,10 @@ import ru.job4j.fragments.ExamListFragment;
 
 
 public class ExamsListActivity extends AppCompatActivity {
+
     @Override
-    protected void onCreate(@Nullable Bundle saved) {
-        super.onCreate(saved);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.host_frg);
         FragmentManager fm = getSupportFragmentManager();
         if (fm.findFragmentById(R.id.content) == null) {

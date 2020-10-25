@@ -1,7 +1,5 @@
 package ru.job4j.fragments;
 
-import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,7 +13,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,9 +45,11 @@ public class ExamListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.exams_list_fragment, container, false);
         this.recycler = view.findViewById(R.id.exams);
+        exams.clear();
         this.recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         this.store = new ExamBaseHelper(this.getContext()).getWritableDatabase();
         updateUI();
+        this.recycler.addItemDecoration(new SpaceItemDecoration(8));
         return view;
     }
 
@@ -71,7 +70,7 @@ public class ExamListFragment extends Fragment {
             cursor.moveToNext();
         }
         cursor.close();
-       this.recycler.setAdapter(new ExamAdapter(exams, (AppCompatActivity) getActivity()));
+        this.recycler.setAdapter(new ExamAdapter(exams, (AppCompatActivity) getActivity(), store));
     }
 
     @Override
